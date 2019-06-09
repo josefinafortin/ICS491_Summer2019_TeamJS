@@ -4,7 +4,6 @@ from adddevice.models import AddDevice
 from yeelight import Bulb, discover_bulbs
 import datetime
 
-# Create your views here.
 @login_required(login_url="/accounts/login")
 def timer_view(request):
     user = request.user

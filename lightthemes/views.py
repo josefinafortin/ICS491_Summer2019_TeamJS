@@ -89,12 +89,14 @@ def sun_theme(request):
     brightness = 100
 
     transitions = [
-    RGBTransition(100, 96, 48, duration=duration, brightness=brightness),
-    RGBTransition(100, 89, 41, duration=duration, brightness=brightness),
-    RGBTransition(100, 80, 32, duration=duration, brightness=brightness),
-    RGBTransition(99, 69, 20, duration=duration, brightness=brightness),
-    RGBTransition(98, 59, 11, duration=duration, brightness=brightness),
-    RGBTransition(98, 53, 3, duration=duration, brightness=brightness),
+    RGBTransition(255, 193, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 154, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 116, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 77, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 0, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 77, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 116, 0, duration=duration, brightness=brightness),
+    RGBTransition(255, 154, 0, duration=duration, brightness=brightness),
     ]
 
     flow = Flow(
