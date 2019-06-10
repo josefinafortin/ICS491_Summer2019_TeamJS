@@ -9,8 +9,8 @@ urlpatterns = [
     path('about/', views.about),
     path('', views.homepage),
     re_path(r'^accounts/', include('accounts.urls')),
-    re_path(r'^lightthemes/', include('lightthemes.urls')),
     re_path(r'^timer/', include('timer.urls')),
+    re_path(r'^lightthemes/', include('lightthemes.urls')),
     re_path(r'^adddevice/', include('adddevice.urls')),
 ]
 

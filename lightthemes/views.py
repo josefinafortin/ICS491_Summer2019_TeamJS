@@ -30,53 +30,10 @@ def lighttheme_list(request):
 
 @login_required(login_url="/accounts/login")
 def fire_theme(request):
-
-    userIP = AddDevice.objects.get(owner=request.user).ip
-    bulb = Bulb(userIP)
-
-    transitions = [
-    TemperatureTransition(1700, duration=4000),
-    TemperatureTransition(6500, duration=4000)
-    ]
-
-    flow = Flow(
-    count=50,
-    action=Flow.actions.recover,
-    transitions=transitions
-    )
-
-    bulb.start_flow(flow)
-
     return redirect('lightthemes:lighthome')
 
 @login_required(login_url="/accounts/login")
 def rain_theme(request):
-
-    userIP = AddDevice.objects.get(owner=request.user).ip
-    bulb = Bulb(userIP)
-
-    duration = 1000
-    brightness = 100
-
-    transitions = [
-    RGBTransition(23, 80, 91, duration=duration, brightness=brightness),
-    RGBTransition(11, 64, 87, duration=duration, brightness=brightness),
-    RGBTransition(5, 52, 85, duration=duration, brightness=brightness),
-    RGBTransition(0, 38, 79, duration=duration, brightness=brightness),
-    RGBTransition(0, 25, 78, duration=duration, brightness=brightness),
-    RGBTransition(0, 38, 79, duration=duration, brightness=brightness),
-    RGBTransition(5, 52, 85, duration=duration, brightness=brightness),
-    RGBTransition(11, 64, 87, duration=duration, brightness=brightness),
-    ]
-
-    flow = Flow(
-    count=50,
-    action=Flow.actions.recover,
-    transitions=transitions
-    )
-
-    bulb.start_flow(flow)
-
     return redirect('lightthemes:lighthome')
 
 @login_required(login_url="/accounts/login")
