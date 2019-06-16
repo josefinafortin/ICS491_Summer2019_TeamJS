@@ -30,10 +30,53 @@ def lighttheme_list(request):
 
 @login_required(login_url="/accounts/login")
 def fire_theme(request):
+
+    userIP = AddDevice.objects.get(owner=request.user).ip
+    bulb = Bulb(userIP)
+
+    transitions = [
+    TemperatureTransition(1700, duration=4000),
+    TemperatureTransition(6500, duration=4000)
+    ]
+
+    flow = Flow(
+    count=50,
+    action=Flow.actions.recover,
+    transitions=transitions
+    )
+
+    bulb.start_flow(flow)
+
     return redirect('lightthemes:lighthome')
 
 @login_required(login_url="/accounts/login")
 def rain_theme(request):
+
+    userIP = AddDevice.objects.get(owner=request.user).ip
+    bulb = Bulb(userIP)
+
+    duration = 1000
+    brightness = 100
+
+    transitions = [
+    RGBTransition(23, 80, 91, duration=duration, brightness=brightness),
+    RGBTransition(11, 64, 87, duration=duration, brightness=brightness),
+    RGBTransition(5, 52, 85, duration=duration, brightness=brightness),
+    RGBTransition(0, 38, 79, duration=duration, brightness=brightness),
+    RGBTransition(0, 25, 78, duration=duration, brightness=brightness),
+    RGBTransition(0, 38, 79, duration=duration, brightness=brightness),
+    RGBTransition(5, 52, 85, duration=duration, brightness=brightness),
+    RGBTransition(11, 64, 87, duration=duration, brightness=brightness),
+    ]
+
+    flow = Flow(
+    count=50,
+    action=Flow.actions.recover,
+    transitions=transitions
+    )
+
+    bulb.start_flow(flow)
+
     return redirect('lightthemes:lighthome')
 
 @login_required(login_url="/accounts/login")
@@ -46,14 +89,12 @@ def sun_theme(request):
     brightness = 100
 
     transitions = [
-    RGBTransition(255, 193, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 154, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 116, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 77, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 0, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 77, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 116, 0, duration=duration, brightness=brightness),
-    RGBTransition(255, 154, 0, duration=duration, brightness=brightness),
+    RGBTransition(100, 96, 48, duration=duration, brightness=brightness),
+    RGBTransition(100, 89, 41, duration=duration, brightness=brightness),
+    RGBTransition(100, 80, 32, duration=duration, brightness=brightness),
+    RGBTransition(99, 69, 20, duration=duration, brightness=brightness),
+    RGBTransition(98, 59, 11, duration=duration, brightness=brightness),
+    RGBTransition(98, 53, 3, duration=duration, brightness=brightness),
     ]
 
     flow = Flow(
