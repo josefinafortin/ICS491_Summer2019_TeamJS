@@ -23,7 +23,6 @@ def light_off(request):
 
     return redirect('lightthemes:lighthome')
 
-# Create your views here.
 @login_required(login_url="/accounts/login")
 def lighttheme_list(request):
     return render(request, 'lightthemes/lighttheme_list.html')
@@ -34,9 +33,19 @@ def fire_theme(request):
     userIP = AddDevice.objects.get(owner=request.user).ip
     bulb = Bulb(userIP)
 
+    duration = 1000
+    brightness = 100
+
     transitions = [
-    TemperatureTransition(1700, duration=4000),
-    TemperatureTransition(6500, duration=4000)
+    RGBTransition(255,0,0, duration=duration, brightness=brightness),
+    RGBTransition(255,90,0, duration=duration, brightness=brightness),
+    RGBTransition(255,154,0, duration=duration, brightness=brightness),
+    RGBTransition(255,206,0, duration=duration, brightness=brightness),
+    RGBTransition(255,232,8, duration=duration, brightness=brightness),
+    RGBTransition(255,206,0, duration=duration, brightness=brightness),
+    RGBTransition(255,154,0, duration=duration, brightness=brightness),
+    RGBTransition(255,90,0, duration=duration, brightness=brightness),
+    RGBTransition(255,0,0, duration=duration, brightness=brightness),
     ]
 
     flow = Flow(
