@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from . import forms
 
-# Create your views here.
 @login_required(login_url="/accounts/login")
 def adddevice_view(request):
     if request.method == 'POST':
@@ -15,3 +15,8 @@ def adddevice_view(request):
     else:
         form = forms.AddNewDevice()
     return render(request, 'adddevice/adddevice.html', {'form':form})
+
+@login_required(login_url="/accounts/login")
+def devices_view(request):
+    devices = AddDevice.objects.all()
+    return render(request, 'adddevice/adddevice.html', {'devices':devices})
